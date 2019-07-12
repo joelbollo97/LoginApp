@@ -9,12 +9,20 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var ButtonsView: UIView!
+    var loginSelect = false;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.view.bringSubviewToFront(ButtonsView)
+        
     }
-
-
+    
+    @IBAction func loginButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func registerButton(_ sender: UIButton) {
+    }
+    
 }
 
