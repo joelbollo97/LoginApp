@@ -9,9 +9,11 @@
 import Foundation
 import CoreData
 
-class UserModel: NSManagedObject{
-    @NSManaged var card_no: String
-    @NSManaged var card_pin: String
-    @NSManaged var username: String
-    @NSManaged var password: String
+class UserModel{
+    var card_no: String = ""
+    var card_pin: String = ""
+    var username: String = ""
+    var password: String = ""
+    
+    
 }

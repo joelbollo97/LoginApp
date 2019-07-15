@@ -15,10 +15,37 @@ class LoginVC: UIViewController {
     @IBOutlet weak var password: UITextField!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var activeUser = UserModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewData()
         
+    }
+    
+    func viewData(){
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        request.returnsObjectsAsFaults = false
+        
+        do{
+            print("---New print---")
+            let results = try context.fetch(request)
+            
+            if results.count>0{
+                for result in results as! [NSManagedObject]{
+                    if let username = result.value(forKey: "username") as? String{
+                        print("user: \(username)")
+                    }
+                }
+            }
+            else{
+                print("No results")
+            }
+        }
+            
+        catch{
+            print("Couldn't fetch data")
+        }
     }
     
     func checkPassword() -> Bool {
@@ -63,6 +90,7 @@ class LoginVC: UIViewController {
     
     func getUser() -> Bool{
         var userLogged = false
+        
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.returnsObjectsAsFaults = false
@@ -71,9 +99,16 @@ class LoginVC: UIViewController {
         do{
             let results = try context.fetch(request)
             if results.count>0{
-                print("\(username.text!) found!")
-                if(checkPassword()){
-                    userLogged = true
+                for result in results as! [NSManagedObject]{
+                    if(checkPassword()){
+                        userLogged = true
+                        activeUser.username = (result.value(forKey: "username") as! String)
+                        activeUser.password = (result.value(forKey: "password") as! String)
+                        activeUser.card_no = (result.value(forKey: "card_no") as! String)
+                        activeUser.card_pin = (result.value(forKey: "card_pin") as! String)
+                        print("Logged user is: \(activeUser.username)")
+                        
+                    }
                 }
             }
             else{
@@ -98,8 +133,20 @@ class LoginVC: UIViewController {
         if(!getUser()){
             return false
         }
+        else{
+            
+        }
 
         return true
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "loginToAccounts"){
+            let nav = segue.destination as! NVC
+            let destination = nav.viewControllers[0] as! AccountsVC
+            destination.activeUser = activeUser
+        }
+
     }
     
     @IBAction func loginButton(_ sender: UIButton) {

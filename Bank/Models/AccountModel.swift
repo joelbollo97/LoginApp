@@ -9,8 +9,10 @@
 import Foundation
 import CoreData
 
-class AccountModel: NSManagedObject{
-    @NSManaged var account_balance: Int
-    @NSManaged var account_id: Int
-    @NSManaged var date_created: Int
+class AccountModel{
+     var account_balance: Int = 0
+     var account_id: String = ""
+     var date_created: Date = Date()
+     var account_owner: String = ""
+    
 }

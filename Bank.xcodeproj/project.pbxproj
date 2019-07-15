@@ -24,6 +24,8 @@
 		3867CC5422D73EA000A1295E /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3867CC5322D73EA000A1295E /* LoginVC.swift */; };
 		3867CC5822D74F1800A1295E /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3867CC5722D74F1800A1295E /* RegisterVC.swift */; };
 		3867CC5C22D7503A00A1295E /* AccountsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3867CC5B22D7503A00A1295E /* AccountsVC.swift */; };
+		38C468A422DC6B10003A5A7C /* NVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C468A322DC6B10003A5A7C /* NVC.swift */; };
+		38C468A622DC777C003A5A7C /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C468A522DC777C003A5A7C /* Cell.swift */; };
 		5A74BBC3F5C2E70B4A1FE75F /* Pods_BankUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D91F93EAAD088CD70E4B71 /* Pods_BankUITests.framework */; };
 		76507C2062E87D42F7B3390F /* Pods_Bank.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA25339F3B245CD0C031305 /* Pods_Bank.framework */; };
 		A7182EA6E915489449B84A87 /* Pods_BankTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594E5FFDC1CF35F8F7AF21F8 /* Pods_BankTests.framework */; };
@@ -70,6 +72,8 @@
 		3867CC5322D73EA000A1295E /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		3867CC5722D74F1800A1295E /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		3867CC5B22D7503A00A1295E /* AccountsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsVC.swift; sourceTree = "<group>"; };
+		38C468A322DC6B10003A5A7C /* NVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NVC.swift; sourceTree = "<group>"; };
+		38C468A522DC777C003A5A7C /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		594E5FFDC1CF35F8F7AF21F8 /* Pods_BankTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BankTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D91F93EAAD088CD70E4B71 /* Pods_BankUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BankUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA25339F3B245CD0C031305 /* Pods_Bank.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bank.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +162,8 @@
 				3867CC5B22D7503A00A1295E /* AccountsVC.swift */,
 				381546F922D7608D0059DC66 /* AccountVC.swift */,
 				3848550C22D71FE600343CF7 /* AppDelegate.swift */,
+				38C468A522DC777C003A5A7C /* Cell.swift */,
+				38C468A322DC6B10003A5A7C /* NVC.swift */,
 				3848551622D71FE700343CF7 /* Assets.xcassets */,
 				3848551822D71FE700343CF7 /* LaunchScreen.storyboard */,
 				3848551B22D71FE700343CF7 /* Info.plist */,
@@ -438,6 +444,8 @@
 				3848550D22D71FE600343CF7 /* AppDelegate.swift in Sources */,
 				381546FA22D7608D0059DC66 /* AccountVC.swift in Sources */,
 				3867CC5822D74F1800A1295E /* RegisterVC.swift in Sources */,
+				38C468A422DC6B10003A5A7C /* NVC.swift in Sources */,
+				38C468A622DC777C003A5A7C /* Cell.swift in Sources */,
 				3867CC5422D73EA000A1295E /* LoginVC.swift in Sources */,
 				3848551522D71FE600343CF7 /* Bank.xcdatamodeld in Sources */,
 			);

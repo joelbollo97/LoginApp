@@ -17,7 +17,8 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var repeatPassword: UITextField!
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+    var newUserEntity = User()
+    var activeUser = UserModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,12 +49,19 @@ class RegisterVC: UIViewController {
     func insertUser(){
         
         if(checkPassword()){
-            let newUser = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
+             newUserEntity = User(context: self.context)
+//            let newUser = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
+//
+//            newUser.setValue(username.text, forKey: "username")
+//            newUser.setValue(password.text, forKey: "password")
+//            newUser.setValue(cardNo.text, forKey: "card_no")
+//            newUser.setValue(cardPin.text, forKey: "card_pin")
             
-            newUser.setValue(username.text, forKey: "username")
-            newUser.setValue(password.text, forKey: "password")
-            newUser.setValue(cardNo.text, forKey: "card_no")
-            newUser.setValue(cardPin.text, forKey: "card_pin")
+            newUserEntity.username = username.text
+            newUserEntity.password = password.text
+            newUserEntity.card_no = cardNo.text
+            newUserEntity.card_pin = cardPin.text
+            print("Logged user is: \(newUserEntity.username!)")
             
             do{
                 try context.save()
@@ -61,9 +69,9 @@ class RegisterVC: UIViewController {
             catch{
                 print("User not inserted")
             }
+            
         }
-        
-        
+
         
     }
     
@@ -149,9 +157,21 @@ class RegisterVC: UIViewController {
         return true
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "registerToAccounts"){
+            let nav = segue.destination as! NVC
+            let destination = nav.viewControllers[0] as! AccountsVC
+            destination.activeUser = activeUser
+        }
+    }
+    
     @IBAction func registerButton(_ sender: UIButton) {
         if(!checkDuplicateUser()){
             insertUser()
+            activeUser.username = newUserEntity.username!
+            activeUser.password = newUserEntity.password!
+            activeUser.card_no = newUserEntity.card_no!
+            activeUser.card_pin = newUserEntity.card_pin!
             performSegue(withIdentifier: "registerToAccounts", sender: self)
             viewData()
         }
