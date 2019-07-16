@@ -26,10 +26,10 @@ class AccountsVC: UITableViewController {
         
         let action = UIAlertAction(title: "Add Account", style: .default) { (action) in
             let name = textField.text
-            self.insertAccount(name: name!)
-            self.accounts.append(newAccount)
-            self.saveAccounts()
-            self.loadAccounts()
+            self.insertAccount(name: name!, time: self.currentDate)
+            //self.accounts.append(newAccount)
+            //self.saveAccounts()
+            self.tableView.reloadData()
 
         }
         
@@ -76,7 +76,7 @@ class AccountsVC: UITableViewController {
             }
             
             let actionNo = UIAlertAction(title: "No", style: .default) { (actionNo) in
-                self.dismiss(animated: true, completion: nil)
+                alert.dismiss(animated: true, completion: nil)
                 self.tableView.reloadData()
             }
             
@@ -92,6 +92,7 @@ class AccountsVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(accounts.count)
         return accounts.count
     }
     
@@ -105,10 +106,10 @@ class AccountsVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "accountCell", for: indexPath) as! Cell
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "dd-MMM-yyyy HH:mm:ss"
-        let time = dateformatter.string(from: accounts[indexPath.row].date_created!)
-        
+        let time = dateformatter.string(from: accounts[indexPath.row].date_created ?? currentDate)
         cell.accountID?.text = accounts[indexPath.row].account_id
         cell.accountDate?.text = time
+        
         
         return cell
     }
@@ -116,27 +117,39 @@ class AccountsVC: UITableViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! AccountVC
         
-        if let indexPath = tableView.indexPathForSelectedRow{
-            if segue.identifier == "toAccount"{
-                
-                selectedAccount.account_balance = Int(accounts[indexPath.row].account_balance)
-                selectedAccount.account_id = accounts[indexPath.row].account_id!
-                selectedAccount.date_created = accounts[indexPath.row].date_created!
-                destinationVC.selectedAccount = selectedAccount
-
+        
+        if let destinationVC = segue.destination as? AccountVC{
+            if let indexPath = tableView.indexPathForSelectedRow{
+                if segue.identifier == "toAccount"{
+                    
+                    selectedAccount.account_balance = Int(accounts[indexPath.row].account_balance)
+                    selectedAccount.account_id = accounts[indexPath.row].account_id!
+                    selectedAccount.date_created = accounts[indexPath.row].date_created!
+                    destinationVC.selectedAccount = selectedAccount
+                    
+                }
             }
         }
+    
+        else{
+            if segue.identifier == "logout"{
+                let logout = segue.destination as! ViewController
+                logout.navigationItem.hidesBackButton = true
+            }
+        }
+
     }
     
     
     // MARK: Data
     
     func printAccounts(){
+        print("ARRAY:")
         for account in accounts{
-            print("ARRAY:\(account.account_id!)")
+            print("-\(account.account_id!)")
         }
+        print("Count: \(accounts.count)")
     }
     
     func loadAccounts(){
@@ -169,13 +182,13 @@ class AccountsVC: UITableViewController {
         tableView.reloadData()
     }
     
-    func insertAccount(name: String){
+    func insertAccount(name: String, time: Date){
             let newAccount = NSEntityDescription.insertNewObject(forEntityName: "Account", into: context)
         
             newAccount.setValue(activeUser.username, forKey: "account_owner")
             newAccount.setValue(0, forKey: "account_balance")
             newAccount.setValue(name, forKey: "account_id")
-            newAccount.setValue(currentDate, forKey: "date_created")
+            newAccount.setValue(time, forKey: "date_created")
             accounts.append(newAccount as! Account)
 
             do{
@@ -197,7 +210,7 @@ class AccountsVC: UITableViewController {
             print("Error saving, \(error)")
         }
         
-        tableView.reloadData()
+        //tableView.reloadData()
     }
  
     

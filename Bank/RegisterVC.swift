@@ -61,6 +61,12 @@ class RegisterVC: UIViewController {
             newUserEntity.password = password.text
             newUserEntity.card_no = cardNo.text
             newUserEntity.card_pin = cardPin.text
+            
+            activeUser.username = username.text!
+            activeUser.password = password.text!
+            activeUser.card_no = cardNo.text!
+            activeUser.card_pin = cardPin.text!
+            
             print("Logged user is: \(newUserEntity.username!)")
             
             do{
@@ -106,7 +112,7 @@ class RegisterVC: UIViewController {
         if(password.text != repeatPassword.text){
             let alert = UIAlertController(title: "Password doesn't match!", message: "", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (actionCancel) in
-                self.dismiss(animated: true, completion: nil)
+                alert.dismiss(animated: true, completion: nil)
             }
             alert.addAction(cancelAction)
             present(alert, animated: true, completion: nil)
@@ -132,7 +138,7 @@ class RegisterVC: UIViewController {
             if results.count>0{
                 let alert = UIAlertController(title: "Username already exists", message: "", preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (actionCancel) in
-                    self.dismiss(animated: true, completion: nil)
+                    alert.dismiss(animated: true, completion: nil)
                 }
                 alert.addAction(cancelAction)
                 present(alert, animated: true, completion: nil)
@@ -168,10 +174,10 @@ class RegisterVC: UIViewController {
     @IBAction func registerButton(_ sender: UIButton) {
         if(!checkDuplicateUser()){
             insertUser()
-            activeUser.username = newUserEntity.username!
-            activeUser.password = newUserEntity.password!
-            activeUser.card_no = newUserEntity.card_no!
-            activeUser.card_pin = newUserEntity.card_pin!
+//            activeUser.username = newUserEntity.username!
+//            activeUser.password = newUserEntity.password!
+//            activeUser.card_no = newUserEntity.card_no!
+//            activeUser.card_pin = newUserEntity.card_pin!
             performSegue(withIdentifier: "registerToAccounts", sender: self)
             viewData()
         }

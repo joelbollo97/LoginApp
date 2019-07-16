@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var ButtonsView: UIView!
     var loginSelect = false;
+    @IBOutlet weak var navItem: UINavigationItem!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

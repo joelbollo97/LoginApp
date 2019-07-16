@@ -68,7 +68,7 @@ class LoginVC: UIViewController {
                         else{
                             let alert = UIAlertController(title: "Username or password incorrect", message: "", preferredStyle: .alert)
                             let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (actionCancel) in
-                                self.dismiss(animated: true, completion: nil)
+                                alert.dismiss(animated: true, completion: nil)
                             }
                             alert.addAction(cancelAction)
                             present(alert, animated: true, completion: nil)
@@ -114,7 +114,7 @@ class LoginVC: UIViewController {
             else{
                 let alert = UIAlertController(title: "Username or password incorrect", message: "", preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (actionCancel) in
-                    self.dismiss(animated: true, completion: nil)
+                    alert.dismiss(animated: true, completion: nil)
                 }
                 alert.addAction(cancelAction)
                 present(alert, animated: true, completion: nil)

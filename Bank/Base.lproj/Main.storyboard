@@ -76,9 +76,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="nq8-8w-rjD"/>
+                    <navigationItem key="navigationItem" id="nq8-8w-rjD">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="sM3-EP-kn3"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="ButtonsView" destination="mX5-vr-frK" id="4g5-Og-QDF"/>
+                        <outlet property="navItem" destination="nq8-8w-rjD" id="4Q8-2o-fEg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -316,7 +319,6 @@
                                 <connections>
                                     <outlet property="accountDate" destination="opm-dN-2pY" id="lsK-Pq-gcx"/>
                                     <outlet property="accountID" destination="Ade-rD-9OW" id="M3k-W2-YSe"/>
-                                    <segue destination="AWz-5I-2sx" kind="show" identifier="toAccount" id="W8L-eJ-DE8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -328,7 +330,7 @@
                     <navigationItem key="navigationItem" id="vzS-Ii-Drb">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="Acu-9g-NrY">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="MFQ-eo-2Wp"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="logout" id="MFQ-eo-2Wp"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="yas-cc-bQz">
@@ -337,6 +339,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="AWz-5I-2sx" kind="show" identifier="toAccount" id="vNs-UE-sIj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDg-iH-6Dd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -443,18 +448,59 @@
                                             <constraint firstItem="y94-3c-Y21" firstAttribute="top" secondItem="ITk-Nx-2lz" secondAttribute="top" constant="54" id="jKr-2e-iW1"/>
                                         </constraints>
                                     </view>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Deposit here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xfx-7N-h0C">
+                                        <rect key="frame" x="50" y="365" width="275" height="34"/>
+                                        <color key="backgroundColor" red="0.25768627370000002" green="0.78057049339999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.91372549020000005" green="0.67843137249999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X29-Oi-8ai">
+                                        <rect key="frame" x="176.5" y="409" width="22" height="22"/>
+                                        <connections>
+                                            <action selector="addMoney:" destination="AWz-5I-2sx" eventType="touchUpInside" id="Aei-CK-TAE"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Withdraw here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bfv-Bg-pJW">
+                                        <rect key="frame" x="50" y="461" width="275" height="34"/>
+                                        <color key="backgroundColor" red="0.25768627370000002" green="0.78057049339999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.91372549020000005" green="0.67843137249999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TSr-D8-GUl">
+                                        <rect key="frame" x="154.5" y="505" width="66" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Withdraw">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="withdrawButton:" destination="AWz-5I-2sx" eventType="touchUpInside" id="4Kw-Dy-cqu"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.91372549020000005" green="0.67843137249999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="Jgh-sf-zP1" firstAttribute="leading" secondItem="l0I-6Q-v8G" secondAttribute="leading" id="3CK-J7-nQV"/>
                                     <constraint firstItem="Jgh-sf-zP1" firstAttribute="leading" secondItem="wRS-bU-Krg" secondAttribute="leading" id="4QN-nG-7Wg"/>
+                                    <constraint firstItem="X29-Oi-8ai" firstAttribute="centerX" secondItem="l0I-6Q-v8G" secondAttribute="centerX" id="7Ke-dI-hap"/>
                                     <constraint firstItem="Jgh-sf-zP1" firstAttribute="trailing" secondItem="wRS-bU-Krg" secondAttribute="trailing" id="BgY-bF-bgL"/>
+                                    <constraint firstItem="xfx-7N-h0C" firstAttribute="top" secondItem="ITk-Nx-2lz" secondAttribute="bottom" constant="70" id="GjQ-eH-rMW"/>
+                                    <constraint firstItem="X29-Oi-8ai" firstAttribute="top" secondItem="xfx-7N-h0C" secondAttribute="bottom" constant="10" id="L2z-zI-jel"/>
                                     <constraint firstItem="90m-HU-uz4" firstAttribute="top" secondItem="l0I-6Q-v8G" secondAttribute="top" constant="20" id="QFn-Hg-DlQ"/>
+                                    <constraint firstItem="TSr-D8-GUl" firstAttribute="centerX" secondItem="l0I-6Q-v8G" secondAttribute="centerX" id="SAN-1M-liG"/>
                                     <constraint firstItem="90m-HU-uz4" firstAttribute="centerX" secondItem="Jgh-sf-zP1" secondAttribute="centerX" id="TRG-Z8-DWD"/>
                                     <constraint firstItem="Jgh-sf-zP1" firstAttribute="top" secondItem="90m-HU-uz4" secondAttribute="bottom" id="U4j-Nt-C9s"/>
+                                    <constraint firstItem="TSr-D8-GUl" firstAttribute="top" secondItem="Bfv-Bg-pJW" secondAttribute="bottom" constant="10" id="UXE-6b-ebw"/>
+                                    <constraint firstAttribute="trailing" secondItem="xfx-7N-h0C" secondAttribute="trailing" constant="50" id="Xpa-l7-6lZ"/>
                                     <constraint firstItem="wRS-bU-Krg" firstAttribute="trailing" secondItem="ITk-Nx-2lz" secondAttribute="trailing" id="a5f-bS-X2Y"/>
+                                    <constraint firstItem="Bfv-Bg-pJW" firstAttribute="width" secondItem="xfx-7N-h0C" secondAttribute="width" id="i5H-CN-QBz"/>
+                                    <constraint firstItem="Bfv-Bg-pJW" firstAttribute="centerX" secondItem="l0I-6Q-v8G" secondAttribute="centerX" id="m8A-6T-MbQ"/>
+                                    <constraint firstItem="xfx-7N-h0C" firstAttribute="leading" secondItem="l0I-6Q-v8G" secondAttribute="leading" constant="50" id="moE-g6-WXt"/>
                                     <constraint firstItem="ITk-Nx-2lz" firstAttribute="top" secondItem="wRS-bU-Krg" secondAttribute="bottom" constant="18" id="pCG-Id-H42"/>
                                     <constraint firstItem="wRS-bU-Krg" firstAttribute="top" secondItem="Jgh-sf-zP1" secondAttribute="bottom" constant="8" symbolic="YES" id="rCs-qW-42r"/>
+                                    <constraint firstItem="Bfv-Bg-pJW" firstAttribute="top" secondItem="X29-Oi-8ai" secondAttribute="bottom" constant="30" id="sTd-pz-1FX"/>
+                                    <constraint firstItem="Bfv-Bg-pJW" firstAttribute="height" secondItem="xfx-7N-h0C" secondAttribute="height" id="sVC-PR-lXL"/>
                                     <constraint firstItem="wRS-bU-Krg" firstAttribute="leading" secondItem="ITk-Nx-2lz" secondAttribute="leading" id="u45-18-Y2e"/>
                                     <constraint firstAttribute="trailing" secondItem="Jgh-sf-zP1" secondAttribute="trailing" id="uN1-cS-6Gb"/>
                                 </constraints>
@@ -473,6 +519,8 @@
                         <outlet property="accountBalance" destination="Ru8-1W-6qr" id="Z2L-E0-uRa"/>
                         <outlet property="accountDate" destination="ZrS-zg-ctu" id="aUR-bn-uMh"/>
                         <outlet property="accountId" destination="Sgu-Zr-LVH" id="AeL-KO-Sbo"/>
+                        <outlet property="moneyField" destination="xfx-7N-h0C" id="2J9-Ws-duX"/>
+                        <outlet property="withdrawMoney" destination="Bfv-Bg-pJW" id="gYo-f8-pwP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hjs-yN-yRk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -520,6 +568,7 @@
         <image name="new" width="240" height="320"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="vDy-68-ezQ"/>
         <segue reference="WUz-Io-VTA"/>
         <segue reference="MFQ-eo-2Wp"/>
     </inferredMetricsTieBreakers>
