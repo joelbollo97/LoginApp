@@ -16,14 +16,27 @@ class AccountVC: UIViewController {
     @IBOutlet weak var moneyField: UITextField!
     @IBOutlet weak var withdrawMoney: UITextField!
     
+    @IBOutlet weak var depositOutlet: UIButton!
+    @IBOutlet weak var withdrawOutlet: UIButton!
+    
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var selectedAccount = AccountModel()
     
     @IBAction func addMoney(_ sender: UIButton) {
-        if moneyField.text != nil{
+        if moneyField.text != ""{
             selectedAccount.account_balance += Int(moneyField.text!)!
             accountBalance.text = String(selectedAccount.account_balance)
         }
+        else{
+            let alert = UIAlertController(title: "No money inserted", message: "", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (actionCancel) in
+                alert.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(cancelAction)
+            present(alert, animated: true, completion: nil)
+        }
+
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Account")
         request.returnsObjectsAsFaults = false
@@ -58,9 +71,17 @@ class AccountVC: UIViewController {
     @IBAction func withdrawButton(_ sender: UIButton) {
         let initialBalance = selectedAccount.account_balance
         
-        if withdrawMoney.text != nil{
+        if withdrawMoney.text != ""{
             selectedAccount.account_balance -= Int(withdrawMoney.text!)!
             accountBalance.text = String(selectedAccount.account_balance)
+        }
+        else{
+            let alert = UIAlertController(title: "No money inserted", message: "", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (actionCancel) in
+                alert.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(cancelAction)
+            present(alert, animated: true, completion: nil)
         }
             
         if selectedAccount.account_balance < 0 {

@@ -90,7 +90,6 @@ class AccountsVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(accounts.count)
         return accounts.count
     }
     
