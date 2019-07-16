@@ -1,2 +1,2 @@
 # LoginApp
-Login iOS Application made using Swift and CoreData
+Login, e-banking like iOS Application made using Swift and CoreData
