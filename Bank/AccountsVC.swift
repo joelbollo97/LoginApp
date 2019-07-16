@@ -27,8 +27,6 @@ class AccountsVC: UITableViewController {
         let action = UIAlertAction(title: "Add Account", style: .default) { (action) in
             let name = textField.text
             self.insertAccount(name: name!, time: self.currentDate)
-            //self.accounts.append(newAccount)
-            //self.saveAccounts()
             self.tableView.reloadData()
 
         }
@@ -210,7 +208,6 @@ class AccountsVC: UITableViewController {
             print("Error saving, \(error)")
         }
         
-        //tableView.reloadData()
     }
  
     

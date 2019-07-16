@@ -50,12 +50,6 @@ class RegisterVC: UIViewController {
         
         if(checkPassword()){
              newUserEntity = User(context: self.context)
-//            let newUser = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
-//
-//            newUser.setValue(username.text, forKey: "username")
-//            newUser.setValue(password.text, forKey: "password")
-//            newUser.setValue(cardNo.text, forKey: "card_no")
-//            newUser.setValue(cardPin.text, forKey: "card_pin")
             
             newUserEntity.username = username.text
             newUserEntity.password = password.text
@@ -174,10 +168,6 @@ class RegisterVC: UIViewController {
     @IBAction func registerButton(_ sender: UIButton) {
         if(!checkDuplicateUser()){
             insertUser()
-//            activeUser.username = newUserEntity.username!
-//            activeUser.password = newUserEntity.password!
-//            activeUser.card_no = newUserEntity.card_no!
-//            activeUser.card_pin = newUserEntity.card_pin!
             performSegue(withIdentifier: "registerToAccounts", sender: self)
             viewData()
         }
